@@ -8,14 +8,10 @@ size = 280 #size of quote sections
 now = datetime.datetime.now() #Get current time of day
 sec = (now.hour*60*60) + (now.minute*60) + now.second #convert now into second of day
 #creating waitTime until 9:00 or 21:00
-if(sec > 32400) #32400 is 9:00
-{
+if(sec > 32400): #32400 is 9:00
     waitTime = 75600 - sec #75600 is 21:00
-}
-else
-{
+else:
     waitTime = 32400 - sec
-}
 
 print("Time verified.")
 print("Waiting for " + waitTime + "seconds before posting.") #printing number of seconds of wait to console
@@ -35,8 +31,7 @@ print("Twitter access authorized.")
 
 print("Main loop entered.")
 
-while True #infinite loop
-{
+while True: #infinite loop
     #used to read first line from file
     with open('quoteList.txt') as f: #opens quote list file
         quote = f.readline() #sets quote as the first line in the file
@@ -56,20 +51,13 @@ while True #infinite loop
     quoteChunks = list(chunks(quote, size)) #puts quote chunks into list
 
     for chunk in quoteChunks:
-        if(len(quoteChunks) > 1)
-        {
-            if(chunk == quoteChunks[0]) #if the chunk is the first chunk
-            {
+        if(len(quoteChunks) > 1):
+            if(chunk == quoteChunks[0]): #if the chunk is the first chunk
                 API.update_status(chunk) #tweet chunk
                 latest = API.user_timeline(screen_name=txtCoestar, count=1) #get id of latest tweet
-            }
             API.update_status(chunk, in_reply_to_status_id=latest) #tweet chunk in reply to latest
             latest = API.user_timeline(screen_name=txtCoestar, count=1) #get id of latest tweet
-        }
-        else
-        {
+        else:
             API.update_status(chunk) #tweet chunk
-        }
 
     time.sleep(43200) #sleep for 12 hours
-}
