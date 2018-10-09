@@ -14,7 +14,7 @@ else:
     waitTime = 32400 - sec
 
 print("Time verified.")
-print("Waiting for " + waitTime + "seconds before posting.") #printing number of seconds of wait to console
+print(waitTime) #printing number of seconds of wait to console
 
 time.sleep(waitTime) #sleeping for waitTime seconds
 
