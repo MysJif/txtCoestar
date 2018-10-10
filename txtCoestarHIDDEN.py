@@ -10,7 +10,7 @@ sec = (now.hour*60*60) + (now.minute*60) + now.second #convert now into second o
 #creating waitTime until 9:00 or 21:00
 if sec > 32400: #32400 is 9:00
     waitTime = 75600 - sec #75600 is 21:00
-else if sec > 75600:
+elif sec > 75600:
     waitTime = 86400 - sec + 32400
 else:
     waitTime = 32400 - sec
