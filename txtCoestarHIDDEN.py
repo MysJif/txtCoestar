@@ -8,7 +8,7 @@ size = 280 #size of quote sections
 now = datetime.datetime.now() #Get current time of day
 sec = (now.hour*60*60) + (now.minute*60) + now.second #convert now into second of day
 #creating waitTime until 9:00 or 21:00
-if sec > 32400: #32400 is 9:00
+if sec > 32400 and sec < 75600: #32400 is 9:00
     waitTime = 75600 - sec #75600 is 21:00
 elif sec > 75600:
     waitTime = 118800 - sec
