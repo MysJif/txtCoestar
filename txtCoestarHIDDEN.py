@@ -27,7 +27,7 @@ ACCESS_KEY = 'X'
 ACCESS_SECRET = 'X'
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
-api = tweepy.api(auth)
+api = tweepy.API(auth)
 
 print("Twitter access authorized.")
 
