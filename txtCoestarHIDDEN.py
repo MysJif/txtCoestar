@@ -25,7 +25,7 @@ ACCESS_KEY = 'X'
 ACCESS_SECRET = 'X'
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
-api = tweepy.API(auth)
+api = tweepy.api(auth)
 
 print("Twitter access authorized.")
 
@@ -53,13 +53,13 @@ while True: #infinite loop
     for chunk in quoteChunks:
         if len(quoteChunks) > 1:
             if chunk == quoteChunks[0]: #if the chunk is the first chunk
-                API.update_status(chunk) #tweet chunk
-                latest = API.user_timeline(screen_name=txtCoestar, count=1) #get id of latest tweet
+                api.update_status(chunk) #tweet chunk
+                latest = api.user_timeline(screen_name=txtCoestar, count=1) #get id of latest tweet
                 latest = latest.id_str
-            API.update_status(chunk, in_reply_to_status_id=latest) #tweet chunk in reply to latest
-            latest = API.user_timeline(screen_name=txtCoestar, count=1) #get id of latest tweet
+            api.update_status(chunk, in_reply_to_status_id=latest) #tweet chunk in reply to latest
+            latest = api.user_timeline(screen_name=txtCoestar, count=1) #get id of latest tweet
             latest = latest.id_str
         else:
-            API.update_status(chunk) #tweet chunk
+            api.update_status(chunk) #tweet chunk
 
     time.sleep(43200) #sleep for 12 hours
