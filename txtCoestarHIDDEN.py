@@ -55,10 +55,10 @@ while True: #infinite loop
             if chunk == quoteChunks[0]: #if the chunk is the first chunk
                 API.update_status(chunk) #tweet chunk
                 latest = API.user_timeline(screen_name=txtCoestar, count=1) #get id of latest tweet
-                latest = latest.id
+                latest = latest.id_str
             API.update_status(chunk, in_reply_to_status_id=latest) #tweet chunk in reply to latest
             latest = API.user_timeline(screen_name=txtCoestar, count=1) #get id of latest tweet
-            latest = latest.id
+            latest = latest.id_str
         else:
             API.update_status(chunk) #tweet chunk
 
