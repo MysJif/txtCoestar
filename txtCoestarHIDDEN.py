@@ -4,6 +4,7 @@ import time #for time.sleep
 
 rate = 43200 #rate of posts in seconds
 size = 280 #size of quote sections
+uid = 732397830485069824 #user id of bot
 
 now = datetime.datetime.now() #Get current time of day
 sec = (now.hour*60*60) + (now.minute*60) + now.second #convert now into second of day
@@ -56,11 +57,13 @@ while True: #infinite loop
         if len(quoteChunks) > 1:
             if chunk == quoteChunks[0]: #if the chunk is the first chunk
                 api.update_status(chunk) #tweet chunk
-                latest = api.user_timeline(screen_name=txtCoestar, count=1) #get id of latest tweet
-                latest = latest.id_str
-            api.update_status(chunk, in_reply_to_status_id=latest) #tweet chunk in reply to latest
-            latest = api.user_timeline(screen_name=txtCoestar, count=1) #get id of latest tweet
-            latest = latest.id_str
+                latest = api.user_timeline(user_id=uid, count=1) #get id of latest tweet
+                latest = latest[0].id_str
+                print("id: " + latest)
+            else:
+                api.update_status(chunk, in_reply_to_status_id=latest) #tweet chunk in reply to latest
+                latest = api.user_timeline(user_id=uid, count=1) #get id of latest tweet
+                latest = latest[0].id_str
         else:
             api.update_status(chunk) #tweet chunk
 
